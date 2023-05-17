@@ -1,0 +1,25 @@
+import numpy as np
+from statsmodels.tsa.arima.model import ARIMA
+from sklearn.model_selection import train_test_split
+
+# Assuming you have your data prepared and loaded into `X` and `y`
+# `X` should be a numpy array of shape (number of samples, number of features)
+# `y` should be a numpy array of shape (number of samples,)
+
+# Splitting the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+######## Prompt here
+
+# Train an ARIMA model to predict y_train which is binary so we need to make it 1-D
+arma = ARIMA((np.ravel(y_train)), order=(3, 2, 5)) 
+# set parametets for our ARMIA models norder p,d,q where here I will consider lagged values 
+# up till day 3 but only difference between current index value with respects to previous two 
+# days thus d term act as 2 otherwise if input atday i then use all its fron thoes info in pastuse 
+# var_name=value where value u want ex: oo[lags] these lgs contains relationb with eacvh other them 
+# I can put anything like lagged itself or erroru mased on resason not expected by me same thing goes 
+# for differencing first process using differenced x's again such that my arima is effective easier 
+# compared ans simplest try diffrence usind box jerection signinture qI called error based rather 
+# than mean square 
+
+fittedArma = arma.fit()
